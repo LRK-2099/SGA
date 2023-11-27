@@ -12,7 +12,7 @@ export default function Tasks() {
   const { data: tasks, isLoading } = useGetTasksQuery();
 
   if (!token) {
-    return <p>You must be logged in to see your tasks.</p>;
+    return <p>You must be signed in </p>;
   }
 
   return (

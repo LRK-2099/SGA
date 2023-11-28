@@ -35,6 +35,9 @@ export default function Navbar() {
             <NavLink to="/login">Log In</NavLink>
           </li>
         )}
+         <li>
+          <NavLink to="/students">Student List</NavLink>
+        </li>
       </menu>
     </nav>
   );

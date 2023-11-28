@@ -1,22 +1,15 @@
 const prisma = require("../prisma");
 
+//This line imports the Prisma client, 
+//which is an auto-generated query builder for interacting with the database.
+
 /** Seeds the database with a user and some tasks */
 const seed = async () => {
-  await prisma.user.upsert({
-    where: {
-      username: "foo",
-    },
-    update: {},
-    create: {
-      username: "foo",
-      password: "bar",
-      tasks: {
-        create: [
-          { description: "task 1" },
-          { description: "task 2" },
-          { description: "task 3" },
-        ],
-      },
+  await prisma.Senator.create({
+    data: {
+      firstName: "Ava",
+      lastName: "Allen",
+      email: "avaallen@gmail.com",
     },
   });
 };

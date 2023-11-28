@@ -1,18 +1,19 @@
--- CreateTable
-CREATE TABLE "User" (
+CREATE TABLE "Senator" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "username" TEXT NOT NULL,
-    "password" TEXT NOT NULL
-);
-
--- CreateTable
-CREATE TABLE "Task" (
-    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
-    "description" TEXT NOT NULL,
-    "done" BOOLEAN NOT NULL,
-    "userId" INTEGER NOT NULL,
-    CONSTRAINT "Task_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User" ("id") ON DELETE CASCADE ON UPDATE CASCADE
+    "firstName" TEXT NOT NULL,
+    "lastName" TEXT NOT NULL,
+    "email" TEXT NOT NULL,
+    "imageUrl" TEXT NOT NULL,
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+CREATE UNIQUE INDEX "Senator_firstName_key" ON "Senator"("firstName");
+
+-- CREATE TABLE "Executives" (
+--     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+--     "firstName" TEXT NOT NULL,
+--     "lastName" TEXT NOT NULL,
+--     "email" TEXT NOT NULL,
+--     "imageUrl" TEXT NOT NULL,
+-- );
+

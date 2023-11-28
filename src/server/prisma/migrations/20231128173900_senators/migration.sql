@@ -1,6 +1,6 @@
 -- RedefineTables
 PRAGMA foreign_keys=OFF;
-CREATE TABLE "new_Task" (
+CREATE TABLE "Electies" (
     "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
     "description" TEXT NOT NULL,
     "done" BOOLEAN NOT NULL DEFAULT false,

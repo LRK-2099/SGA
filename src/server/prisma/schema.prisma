@@ -16,6 +16,7 @@ model Senator {
   lastName  String
   email     String
   imageUrl  String
+  major String
 }
 
 model Executives {
@@ -24,4 +25,5 @@ id       Int      @id @default(autoincrement())
   lastName  String
   email     String
   imageUrl  String
+  major String
 }

@@ -5,7 +5,7 @@ const prisma = require("../prisma");
 
 /** Seeds the database with a user and some tasks */
 const seed = async () => {
-  await prisma.Senator.create({
+  await prisma.senator.create({
     data: {
       firstName: "Ava",
       lastName: "Allen",
@@ -13,7 +13,60 @@ const seed = async () => {
     },
   });
 };
-
+ await prisma.senator.create ({
+data: {
+  firstName: "",
+  lastName: "",
+  email: "",
+  imageUrl: "",
+  major:""
+}
+ })
+ await prisma.senator.create ({
+  data: {
+    firstName: "",
+    lastName: "",
+    email: "",
+    imageUrl: "",
+    major:""
+  }
+   })
+   await prisma.senator.create ({
+    data: {
+      firstName: "",
+      lastName: "",
+      email: "",
+      imageUrl: "",
+      major:""
+    }
+     })
+     await prisma.senator.create ({
+      data: {
+        firstName: "",
+        lastName: "",
+        email: "",
+        imageUrl: "",
+        major:""
+      }
+       })
+       await prisma.senator.create ({
+        data: {
+          firstName: "",
+          lastName: "",
+          email: "",
+          imageUrl: "",
+          major:""
+        }
+         })
+         await prisma.senator.create ({
+          data: {
+            firstName: "",
+            lastName: "",
+            email: "",
+            imageUrl: "",
+            major:""
+          }
+           })
 seed()
   .then(async () => await prisma.$disconnect())
   .catch(async (err) => {

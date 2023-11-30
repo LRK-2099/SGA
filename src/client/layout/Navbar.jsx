@@ -36,7 +36,7 @@ export default function Navbar() {
           </li>
         )}
          <li>
-          <NavLink to="/students">Student List</NavLink>
+          <NavLink to="/senators">Senators</NavLink>
         </li>
       </menu>
     </nav>

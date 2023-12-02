@@ -1,22 +1,22 @@
-import { useGetStudentsQuery } from "./studentSlice";
-import Senatorinfo from "./Senatorinfo";
+import { useGetSenatorsQuery } from "./senatorSlice"; // Fixed the import statement
+import SenatorInfo from "./SenatorInfo"; // Corrected the component name
 import CreateSenator from "./CreateSenator";
 
+export default function Senator() {
+  const { data } = useGetSenatorsQuery(); // Fixed the typo in the function name
+  console.log("Senator array is here", data);
 
-export default function senator(){
+  return (
+    <>
+      <h1>This is where the list of senators should render</h1>
 
-const {data} = useGEtSenatorQuery();
-console.log("senator array is here", data)
+      <ul>
+        {data?.map((senator) => (
+          <SenatorInfo key={senator.id} senator={senator} /> // Fixed the key assignment and component name
+        ))}
+      </ul>
 
-return(
-<>
-<h1>"this is where the list of senators should render</h1>
-
-<ul>
-
-    
-</ul>
-
-</>
-)
+      <CreateSenator />
+    </>
+  );
 }

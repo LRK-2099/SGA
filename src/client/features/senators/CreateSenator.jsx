@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useCreateSenatorMutation } from "./senatorsSlice.js";
+// import { useCreateSenatorMutation } from "./senatorSlice.js";
 
 // Form for creating a new senator
 export default function CreateSenator() {
@@ -62,7 +62,7 @@ export default function CreateSenator() {
       <br />
       <br />
       <label>
-        GPA:
+        major
         <input
           type="text"
           value={major}

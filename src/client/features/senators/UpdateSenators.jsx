@@ -66,7 +66,7 @@ export default function UpdateSenator({ senatorId }) { // Updated component name
         <br />
 
         <label>
-          GPA:
+          Major:
           <input
             type="text"
             value={text}

@@ -6,14 +6,14 @@ export default function UpdateSenator({ senatorId }) { // Updated component name
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [gpa, setGpa] = useState("");
+  const [major, setMajor] = useState("");
 
   const [updateSenator] = useUpdateSenatorMutation(); // Updated hook
 
   const update = (event) => {
     event.preventDefault();
 
-    updateSenator({ id: senatorId, firstName, lastName, email, imageUrl, gpa }); // Updated variable
+    updateSenator({ id: senatorId, firstName, lastName, email, imageUrl, major }); // Updated variable
   };
 
   return (
@@ -68,9 +68,9 @@ export default function UpdateSenator({ senatorId }) { // Updated component name
         <label>
           GPA:
           <input
-            type="number"
-            value={gpa}
-            onChange={(e) => setGpa(e.target.value)}
+            type="text"
+            value={text}
+            onChange={(e) => setMajor(e.target.value)}
             required
           />
         </label>

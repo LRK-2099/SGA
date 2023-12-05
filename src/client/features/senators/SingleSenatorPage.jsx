@@ -15,7 +15,7 @@ export default function SenatorDetails() { // Updated component name
         <h1>First Name: {senator.firstName}</h1> {/* Updated variable */}
         <h1>Last Name: {senator.lastName}</h1> {/* Updated variable */}
         <h2>Email: {senator.email}</h2> {/* Updated variable */}
-        <h3>GPA: {senator.gpa}</h3> {/* Updated variable */}
+        <h3>Major: {senator.major}</h3> {/* Updated variable */}
         <div className='updateForm'><UpdateSenator senatorId={id} /></div> {/* Updated variable */}
       </main>
     </>

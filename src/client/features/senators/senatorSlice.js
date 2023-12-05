@@ -1,104 +1,57 @@
-const { ServerError } = require("../errors");
-const express = require('express');
-const router = express.Router();
-module.exports = router;
+// senatorSlice.js
 
-const prisma = require('../prisma');
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { ServerError } from './errors'; // Ensure you have the correct path to ServerError
+import prisma from './prisma'; // Ensure you have the correct path to prisma
 
-// should be: /api/senators
-router.get('/', async (req, res, next) => {
+// Define the initial state for the senator slice
+const initialState = {
+  senators: [],
+  updateStatus: 'idle',
+  error: null,
+};
+
+// Create an async thunk for updating a senator
+export const updateSenator = createAsyncThunk('senator/update', async (updatedSenator) => {
   try {
-    const senatorData = await prisma.senator.findMany();
-    console.log(senatorData);
-    res.json(senatorData);
-  } catch {
-    next();
-  }
-});
+    const { id, firstName, lastName, email, imageUrl, gpa } = updatedSenator;
 
-// displays senator by id
-router.get('/:id', async (req, res, next) => {
-  try {
-    // grabs the id from senator database
-    const id = +req.params.id;
-
-    const senatorById = await prisma.senator.findUnique({ where: { id } });
-    if (!senatorById) {
-      return next({
-        status: 404,
-        message: `These are not the id's you are looking for... That non-existent id is ${id}`,
-      });
-    }
-    res.json(senatorById);
-  } catch {
-    next();
-  }
-});
-
-// add a senator
-router.post('/', async (req, res, next) => {
-  try {
-    const { firstName, lastName, email, imageUrl, gpa } = req.body;
-    if (!firstName) {
-      throw new ServerError(400, "First name Required.");
-    }
-    if (!lastName) {
-      throw new ServerError(400, "Last name Required.");
-    }
-    if (!email) {
-      throw new ServerError(400, "email Required.");
-    }
-    if (!imageUrl) {
-      throw new ServerError(400, "Image address Required.");
-    }
-    if (!gpa) {
-      throw new ServerError(400, "gpa Required.");
-    }
-
-    const senator = await prisma.senator.create({
-      data: {
-        firstName,
-        lastName,
-        email,
-        imageUrl,
-        gpa,
-      },
-    });
-    res.json(senator);
-  } catch (err) {
-    next(err);
-  }
-});
-
-// delete a senator by id
-router.delete('/:id', async (req, res, next) => {
-  try {
-    const id = +req.params.id;
-
-    const senator = await prisma.senator.findUnique({ where: { id } });
-
-    await prisma.senator.delete({ where: { id } });
-    res.sendStatus(204);
-
-  } catch (err) {
-    next(err);
-  }
-});
-
-// update a senator by id
-router.put("/:id", async (req, res, next) => {
-  try {
-    const id = +req.params.id;
-    const { firstName, lastName, email, imageUrl, gpa } = req.body;
-
-    const senator = await prisma.senator.findUnique({ where: { id } });
-
-    const updatedSenator = await prisma.senator.update({
+    // Perform the update operation using Prisma
+    const updatedSenatorData = await prisma.senator.update({
       where: { id },
       data: { firstName, lastName, email, imageUrl, gpa },
     });
-    res.json(updatedSenator);
-  } catch (err) {
-    next(err);
+
+    return updatedSenatorData;
+  } catch (error) {
+    throw new ServerError(500, 'Failed to update senator');
   }
 });
+
+// Create the senator slice using createSlice
+const senatorSlice = createSlice({
+  name: 'senator',
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(updateSenator.pending, (state) => {
+        state.updateStatus = 'loading';
+        state.error = null;
+      })
+      .addCase(updateSenator.fulfilled, (state, action) => {
+        state.updateStatus = 'succeeded';
+        // Update the state with the data returned from the server if needed
+        const updatedSenatorData = action.payload;
+        state.senators = state.senators.map((senator) =>
+          senator.id === updatedSenatorData.id ? updatedSenatorData : senator
+        );
+      })
+      .addCase(updateSenator.rejected, (state, action) => {
+        state.updateStatus = 'failed';
+        state.error = action.error.message;
+      });
+  },
+});
+
+export default senatorSlice.reducer;

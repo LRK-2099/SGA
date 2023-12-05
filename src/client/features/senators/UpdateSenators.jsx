@@ -1,19 +1,21 @@
-import { useState } from 'react';
-import { useUpdateSenatorMutation } from './senatorsSlice'; // Updated import
+// UpdateSenator.jsx
 
-export default function UpdateSenator({ senatorId }) { // Updated component name
-  const [firstName, setFirstName] = useState(""); // Updated state variable name
+import React, { useState } from 'react';
+import { useUpdateSenatorMutation } from './senatorSlice.js'; // Adjust the import path
+
+export default function UpdateSenator({ senatorId }) {
+  const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [imageUrl, setImageUrl] = useState("");
   const [major, setMajor] = useState("");
 
-  const [updateSenator] = useUpdateSenatorMutation(); // Updated hook
+  const [updateSenator] = useUpdateSenatorMutation();
 
   const update = (event) => {
     event.preventDefault();
 
-    updateSenator({ id: senatorId, firstName, lastName, email, imageUrl, major }); // Updated variable
+    updateSenator({ id: senatorId, firstName, lastName, email, imageUrl, major });
   };
 
   return (
@@ -41,7 +43,6 @@ export default function UpdateSenator({ senatorId }) { // Updated component name
         </label>
         <br />
         <br />
-
         <label>
           Email:
           <input
@@ -53,9 +54,8 @@ export default function UpdateSenator({ senatorId }) { // Updated component name
         </label>
         <br />
         <br />
-
         <label>
-          imageUrl:
+          Image URL:
           <input
             type="text"
             value={imageUrl}
@@ -64,19 +64,17 @@ export default function UpdateSenator({ senatorId }) { // Updated component name
         </label>
         <br />
         <br />
-
         <label>
           Major:
           <input
             type="text"
-            value={text}
+            value={major}
             onChange={(e) => setMajor(e.target.value)}
             required
           />
         </label>
         <br />
         <br />
-
         <button>Update Senator Info</button>
       </form>
     </>

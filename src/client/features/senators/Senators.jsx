@@ -1,5 +1,5 @@
 import { useGetSenatorsQuery } from "./senatorSlice"; // Fixed the import statement
-import SenatorInfo from "./SenatorInfo"; // Corrected the component name
+import SenatorInfo from "./Senatorinfo"; // Corrected the component name
 import CreateSenator from "./CreateSenator";
 
 export default function Senator() {

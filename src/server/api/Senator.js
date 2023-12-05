@@ -66,6 +66,7 @@ router.post("/", async (req, res, next) => {
   }
 });
 
+//delete
 router.delete("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;

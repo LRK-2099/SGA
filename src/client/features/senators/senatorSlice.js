@@ -1,15 +1,17 @@
 import api from "../../store/api";
+//This line imports the api object from the store/api module
 
-// export default senatorSlice.reducer;
 const senatorApi = api.injectEndpoints({
   endpoints: (builder) => ({
+    // api endpoints
     getSenators: builder.query({
       query: () => "/senators",
-
       providesTags: ["Senators"],
     }),
 
-    // This is useGetSenatorQuery
+    //This block above defines the senatorApi slice using 
+    //the injectEndpoints method from the api object. The endpoints
+
     getSenator: builder.query({
       query: (id) => `/senators/${id}`,
       // Transform response here, but I don't think we need it.
@@ -24,6 +26,8 @@ const senatorApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Senators"],
     }),
+
+
     deleteSenator: builder.mutation({
       query: (id) => ({
         url: `/senators/${id}`,
@@ -31,6 +35,8 @@ const senatorApi = api.injectEndpoints({
       }),
       invalidatesTags: ["Senators"],
     }),
+
+    
     updateSenator: builder.mutation({
       query: (updatedSenator) => ({
         url: `/senators/${updatedSenator.id}`,
@@ -49,3 +55,5 @@ export const {
   useDeleteSenatorMutation,
   useUpdateSenatorMutation,
 } = senatorApi;
+//This block exports the query and mutation hooks for each API endpoint. 
+//These hooks can be used in React components to interact with the API.

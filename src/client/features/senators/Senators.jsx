@@ -3,7 +3,7 @@ import SenatorInfo from "./Senatorinfo";
 import CreateSenator from "./CreateSenator";
 
 export default function Senators() {
-  const { data, isLoading, isError } = useGetSenatorsQuery(); // Fixed the typo in the function name
+  const { data, isLoading,  } = useGetSenatorsQuery();
   console.log("Senator array is here", data);
 
 if (isLoading) {
@@ -11,9 +11,6 @@ if (isLoading) {
 }
 //added loading 
 
-if (isError) {
-  return <p>error fetching senators</p>;
-}
 
   return (
     <>
@@ -27,4 +24,5 @@ if (isError) {
       <CreateSenator />
     </>
   );
+
 }

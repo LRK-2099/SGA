@@ -1,6 +1,5 @@
 
-
-import api from "./store/api";
+import  api  from "../../store/api";
 
 // export default senatorSlice.reducer;
 const senatorApi = api.injectEndpoints({

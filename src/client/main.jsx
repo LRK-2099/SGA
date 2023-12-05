@@ -5,10 +5,12 @@ import "./index.less";
 
 import { Provider } from "react-redux";
 import store from "./store";
-import { Senator } from "./features/senators/Senators.jsx";
-import AuthForm from "./features/auth/AuthForm";
-import Tasks from "./features/tasks/Tasks";
+import Senators  from "./features/senators/Senators.jsx";
+import AuthForm from "./features/auth/AuthForm.jsx";
+import Tasks from "./features/tasks/Tasks.jsx";
 import Root from "./layout/Root.jsx";
+
+
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
@@ -17,7 +19,7 @@ const router = createBrowserRouter([
     element: <Root />,
     children: [
       { path: "/", element: <Tasks /> },
-      { path: "/senators", element: <Senator /> },
+      { path: "/senators", element: <Senators /> },
       { path: "/login", element: <AuthForm /> },
     ],
   },

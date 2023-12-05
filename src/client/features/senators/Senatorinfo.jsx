@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useDeleteSenatorMutation } from "./senatorSlice.js"; // Updated import
-import UpdateSenator from "./UpdateSenators.jsx"; // Updated import
+import UpdateSenator from "./UpdateSenators"; // Updated import
 
 // This should display all the details of a single senator
 export default function SenatorInfo({ senator }) {

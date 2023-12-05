@@ -12,7 +12,9 @@ const seed = async () => {
       firstName: "Ava",
       lastName: "Allen",
       email: "avaallen@gmail.com",
-    },
+      imageUrl: "", // Fixed syntax error
+      major: "psychology",
+    }
   });
 };
 await prisma.senator.create({

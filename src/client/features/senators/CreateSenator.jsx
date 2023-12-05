@@ -1,5 +1,5 @@
 import { useState } from "react";
-// import { useCreateSenatorMutation } from "./senatorSlice.js";
+import { useCreateSenatorMutation } from "./senatorSlice.js";
 
 // Form for creating a new senator
 export default function CreateSenator() {

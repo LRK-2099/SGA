@@ -24,14 +24,13 @@ export default function SenatorInfo({ senator }) {
         </div>
         <section className="senator-info">
           {" "}
-          {/* Updated class name */}
-          <h2>{senator.firstName}</h2> {/* Updated variable */}
-          <h2>{senator.lastName}</h2> {/* Updated variable */}
-          <h3>Email: {senator.email}</h3> {/* Updated variable */}
-          <h4>Major: {senator.major}</h4> {/* Updated variable */}
+          <h2>{senator.firstName}</h2>
+          <h2>{senator.lastName}</h2> 
+          <h3>Email: {senator.email}</h3> 
+          <h4>Major: {senator.major}</h4> 
           <p>School: Galaxy's Edge</p>
-          <Link to={`/senators/${senator.id}`}>More Info</Link>{" "}
-          {/* Updated variable */}
+          <Link to={`/Senators/${senator.id}`}>More Info</Link>{" "}
+         
           <button onClick={onDelete} aria-label="delete">
             EXPELL
           </button>

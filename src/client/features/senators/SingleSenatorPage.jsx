@@ -11,12 +11,12 @@ export default function SenatorDetails() { // Updated component name
   ) : (
     <>
       <main>
-        <img src={senator.imageUrl} alt="Senator" /> {/* Updated variable and added alt attribute */}
-        <h1>First Name: {senator.firstName}</h1> {/* Updated variable */}
-        <h1>Last Name: {senator.lastName}</h1> {/* Updated variable */}
-        <h2>Email: {senator.email}</h2> {/* Updated variable */}
-        <h3>Major: {senator.major}</h3> {/* Updated variable */}
-        <div className='updateForm'><UpdateSenator senatorId={id} /></div> {/* Updated variable */}
+        <img src={senator.imageUrl} alt="Senator" /> 
+        <h1>First Name: {senator.firstName}</h1> 
+        <h1>Last Name: {senator.lastName}</h1> 
+        <h2>Email: {senator.email}</h2> 
+        <h3>Major: {senator.major}</h3> 
+        <div className='updateForm'><UpdateSenator senatorId={id} /></div> 
       </main>
     </>
   );

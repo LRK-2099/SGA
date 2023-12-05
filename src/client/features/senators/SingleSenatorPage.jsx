@@ -15,7 +15,7 @@ export default function SenatorDetails() { // Updated component name
         <h1>First Name: {senator.firstName}</h1> 
         <h1>Last Name: {senator.lastName}</h1> 
         <h2>Email: {senator.email}</h2> 
-        <h3>Major: {senator.major}</h3> 
+        <h3>major: {senator.major}</h3> 
         <div className='updateForm'><UpdateSenator senatorId={id} /></div> 
       </main>
     </>

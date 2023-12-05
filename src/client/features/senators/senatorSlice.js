@@ -1,57 +1,53 @@
-// senatorSlice.js
 
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { ServerError } from './errors'; // Ensure you have the correct path to ServerError
-import prisma from './prisma'; // Ensure you have the correct path to prisma
 
-// Define the initial state for the senator slice
-const initialState = {
-  senators: [],
-  updateStatus: 'idle',
-  error: null,
-};
+import api from "./store/api";
 
-// Create an async thunk for updating a senator
-export const updateSenator = createAsyncThunk('senator/update', async (updatedSenator) => {
-  try {
-    const { id, firstName, lastName, email, imageUrl, gpa } = updatedSenator;
+// export default senatorSlice.reducer;
+const senatorApi = api.injectEndpoints({
+  endpoints: (builder) => ({
 
-    // Perform the update operation using Prisma
-    const updatedSenatorData = await prisma.senator.update({
-      where: { id },
-      data: { firstName, lastName, email, imageUrl, gpa },
-    });
+      //This is useGetSenatorsQuery
+      getSenators: builder.query({
+          //the /senators is grabbing the backend api, so in our backend we grab the senator data by localhost:3000/api/senators,
+          // so we need to put /senators
+          query: () => '/senators',
+          //transform response here, but i don't think we will need it
+          providesTags: ['Senators'],
+      }),
 
-    return updatedSenatorData;
-  } catch (error) {
-    throw new ServerError(500, 'Failed to update senator');
-  }
+
+      //This is useGetSenatorQuery
+      getSenator: builder.query({
+          query: (id) => `/senators/${id}`,
+          //transform response here, but i don't think we need it.
+          providesTags: ['Senator'],
+      }),
+
+      createSenator: builder.mutation({
+          query: (senator) => ({
+              url: '/senators',
+              method: 'POST',
+              body: senator,
+          }),
+          invalidatesTags: ['Senators'], 
+      }),
+      deleteSenator: builder.mutation({
+          query: (id) => ({
+              url: `/senators/${id}`,
+              method: "DELETE",
+          }),
+          invalidatesTags: ['Senators']
+      }),
+      updateSenator: builder.mutation({
+          query: (updatedSenator) => ({
+              url: `/senators/${updatedSenator.id}`,
+              method: "PUT",
+              body: updatedSenator,
+              
+          }),
+          invalidatesTags: ['Senator'],
+      }),
+  }),
 });
 
-// Create the senator slice using createSlice
-const senatorSlice = createSlice({
-  name: 'senator',
-  initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder
-      .addCase(updateSenator.pending, (state) => {
-        state.updateStatus = 'loading';
-        state.error = null;
-      })
-      .addCase(updateSenator.fulfilled, (state, action) => {
-        state.updateStatus = 'succeeded';
-        // Update the state with the data returned from the server if needed
-        const updatedSenatorData = action.payload;
-        state.senators = state.senators.map((senator) =>
-          senator.id === updatedSenatorData.id ? updatedSenatorData : senator
-        );
-      })
-      .addCase(updateSenator.rejected, (state, action) => {
-        state.updateStatus = 'failed';
-        state.error = action.error.message;
-      });
-  },
-});
-
-export default senatorSlice.reducer;
+export const  { useGetSenatorsQuery, useGetSenatorQuery, useCreateSenatorMutation, useDeleteSenatorMutation, useUpdateSenatorMutation} = senatorApi

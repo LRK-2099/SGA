@@ -1,11 +1,11 @@
+import React from "react";
 import { useParams } from "react-router-dom";
-import { useGetSenatorQuery } from "./senatorSlice"; // Updated import
-// import UpdateSenator from './UpdateSenator'; // Updated import
+import { useGetSenatorQuery } from "./senatorSlice";
+import AppointmentScheduler from "./AppointmentScheduler";
 
-export default function SenatorDetails() {
-  // Updated component name
+ export default function SenatorDetails(){
   const { id } = useParams();
-  const { data: senator, isLoading } = useGetSenatorQuery(id); // Updated hook and variable
+  const { data: senator, isLoading } = useGetSenatorQuery(id);
 
   return isLoading ? (
     <p>Loading archives...</p>
@@ -16,9 +16,11 @@ export default function SenatorDetails() {
         <h1>First Name: {senator.firstName}</h1>
         <h1>Last Name: {senator.lastName}</h1>
         <h2>Email: {senator.email}</h2>
-        <h3>major: {senator.major}</h3>
-        {/* <div className='updateForm'><UpdateSenator senatorId={id} /></div>  */}
+        <h3>Major: {senator.major}</h3>
+        <AppointmentScheduler senator={senator} />
       </main>
     </>
   );
 }
+
+

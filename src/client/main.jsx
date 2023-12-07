@@ -14,7 +14,6 @@ import Root from "./layout/Root.jsx";
 import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import SenatorInfo from "./features/senators/Senatorinfo.jsx";
 import MainHome from "./layout/mainpage.jsx";
 const router = createBrowserRouter([
   {

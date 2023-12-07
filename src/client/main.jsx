@@ -3,23 +3,25 @@ import ReactDOM from "react-dom/client";
 
 import "./index.less";
 
+
+
 import { Provider } from "react-redux";
 import store from "./store";
-import Senators  from "./features/senators/Senators.jsx";
+import Senators from "./features/senators/Senators.jsx";
 import AuthForm from "./features/auth/AuthForm.jsx";
 
 import Root from "./layout/Root.jsx";
-import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx"
-
+import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SenatorInfo from "./features/senators/Senatorinfo.jsx";
+import MainHome from "./layout/mainpage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
-      { path: "/", element: <Senators /> },
+      { path: "/", element: <MainHome /> },
       { path: "/senators", element: <Senators /> },
       { path: "/senators/:id", element: <SingleSenatorPage /> },
       { path: "/login", element: <AuthForm /> },

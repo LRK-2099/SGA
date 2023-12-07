@@ -23,6 +23,7 @@ export default function Navbar() {
     <nav className="top">
       <h1>Monroe Community College</h1>
       <menu>
+        
         <li>
           <NavLink to="/">Home</NavLink>
         </li>

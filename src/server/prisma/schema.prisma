@@ -27,3 +27,10 @@ id       Int      @id @default(autoincrement())
   imageUrl  String
   major String
 }
+
+model Resolutions {
+  id      Int     @id @default(autoincrement())
+  Orgname String
+  email   String
+  resname String
+}

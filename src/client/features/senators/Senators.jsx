@@ -1,6 +1,6 @@
 import { useGetSenatorsQuery } from "./senatorSlice";
-import SenatorInfo from "./Senatorinfo";
-import CreateSenator from "./CreateSenator";
+
+import AppointmentScheduler from "./AppointmentScheduler";
 import { Link } from "react-router-dom";
 
 export default function Senators() {
@@ -26,7 +26,7 @@ export default function Senators() {
          </>
         ))}
       </ul>
-      <CreateSenator />
+      <AppointmentScheduler senator={Senators} />
     </>
   );
 }

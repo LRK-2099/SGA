@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import store from "./store";
 import Senators  from "./features/senators/Senators.jsx";
 import AuthForm from "./features/auth/AuthForm.jsx";
-import Tasks from "./features/tasks/Tasks.jsx";
+
 import Root from "./layout/Root.jsx";
 import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx"
 

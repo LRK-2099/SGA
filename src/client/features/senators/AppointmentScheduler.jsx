@@ -3,7 +3,11 @@ import React, { useState } from "react";
 const senators = [
   { id: 1, name: "Mohamed Souhail", position: "Athletic Senator" },
   { id: 2, name: "Ashley Wrobeh", position: "Health and Wellness Senator" },
-  // Add more senators as needed
+  { id: 3, name: "Alicia Crimmins", position: "Resident Halls Senator" },
+  { id: 4, name: "Lorieta Ellis", position: "Virtual Campus Senator" },
+  { id: 5, name: "Giomar Garcia Maldonado", position: "Clubs and Organization Senator" },
+  { id: 6, name: "Daniel Kalumbwe", position: "Clubs and Organizations Senator" },
+
 ];
 
 const AppointmentScheduler = () => {
@@ -12,7 +16,7 @@ const AppointmentScheduler = () => {
 
   const handleSenatorChange = (senatorId) => {
     setSelectedSenator(senatorId);
-    // Reset the selected time slot when the senator changes
+  
     setSelectedTimeSlot(null);
   };
 
@@ -20,11 +24,26 @@ const AppointmentScheduler = () => {
     setSelectedTimeSlot(timeSlot);
   };
 
-  const scheduleAppointment = () => {
+  const scheduleAppointment = async () => {
     // Implement logic to handle appointment scheduling
     if (selectedSenator && selectedTimeSlot) {
-      console.log(`Appointment scheduled with ${selectedSenator} at ${selectedTimeSlot}`);
-      // Add your logic here to handle the appointment scheduling
+      try {
+        const response = await fetch('http://localhost:3001/send-email', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ senator: selectedSenator, timeSlot: selectedTimeSlot }),
+        });
+
+        if (response.ok) {
+          console.log('Email sent successfully');
+        } else {
+          console.error('Failed to send email');
+        }
+      } catch (error) {
+        console.error('Error sending email:', error);
+      }
     } else {
       console.error("Please select a senator and a time slot before scheduling.");
     }
@@ -47,13 +66,13 @@ const AppointmentScheduler = () => {
       {selectedSenator && (
         <div>
           <label>Select Time Slot:</label>
-          {/* Replace the following with your own time slot logic */}
+  
           <select onChange={(e) => handleTimeSlotChange(e.target.value)}>
             <option value="">Select Time Slot</option>
             <option value="10:00 AM">10:00 AM</option>
             <option value="2:00 PM">2:00 PM</option>
             <option value="4:00 PM">4:00 PM</option>
-            {/* Add more time slots as needed */}
+     
           </select>
         </div>
       )}

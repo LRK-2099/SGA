@@ -14,7 +14,7 @@ const seed = async () => {
       lastName: "Souhail",
       email: "mohamedsouhail@gmail.com",
       imageUrl: "https://example.com/mohamed.jpg",
-      major: "international business",
+      major: "Athletic Senator",
     },
     {
       firstName: "Ashley",

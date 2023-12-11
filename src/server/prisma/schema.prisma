@@ -30,7 +30,6 @@ id       Int      @id @default(autoincrement())
 
 model Resolutions {
   id      Int     @id @default(autoincrement())
-  Orgname String
   email   String
   resname String
 }

@@ -39,6 +39,9 @@ export default function Navbar() {
          <li>
           <NavLink to="/Senators">Senators</NavLink>
         </li>
+        <li>
+          <NavLink to="/resolutions">Resolutions</NavLink>
+        </li>
       </menu>
     </nav>
   );

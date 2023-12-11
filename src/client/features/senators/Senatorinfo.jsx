@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
-import { useDeleteSenatorMutation } from "./senatorSlice.js"; // Updated import
-import UpdateSenators from "./UpdateSenators"; // Updated import
+
 
 // This should display all the details of a single senator
 export default function SenatorInfo({ senator }) {
@@ -28,7 +27,7 @@ console.log (senator)
           <h2>{senator.lastName}</h2>
           <h3>Email: {senator.email}</h3>
           <h4>Major: {senator.major}</h4>
-          <p>School: Galaxy's Edge</p>
+
           <Link to={`/senators/${senator.id}`}>More Info</Link>{" "}
           <button onClick={onDelete} aria-label="delete">
             EXPELL

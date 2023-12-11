@@ -10,7 +10,7 @@ router.get("/", async (req, res, next) => {
     const senatorData = await prisma.senator.findMany();
     console.log(senatorData);
     res.json(senatorData);
-  } catch {
+  } catch (error) {
     next();
   }
 });

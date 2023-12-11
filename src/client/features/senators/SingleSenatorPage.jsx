@@ -16,7 +16,7 @@ import AppointmentScheduler from "./AppointmentScheduler";
         <h1>First Name: {senator.firstName}</h1>
         <h1>Last Name: {senator.lastName}</h1>
         <h2>Email: {senator.email}</h2>
-        <h3>Major: {senator.major}</h3>
+        <h3>Position {senator.major}</h3>
         <AppointmentScheduler senator={senator} />
       </main>
     </>

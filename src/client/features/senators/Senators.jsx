@@ -14,14 +14,15 @@ export default function Senators() {
 
   return (
     <>
-      <h1>our lovely senators </h1>
+      <h1>Our Current staff </h1>
 
       <ul>
-        <h2>Senator List</h2>
+        <h2>Student Staff List</h2>
         {data?.map((senator) => (
-          // <SenatorInfo key={senator.id} senator={senator} />
          <>
           <h1>{senator.firstName}</h1>
+          //find a way to add position too before to late 
+          //maybe change major to postion variable
          <Link to={`/senators/${senator.id}`}>More Info</Link>
          </>
         ))}

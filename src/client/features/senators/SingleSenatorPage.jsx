@@ -2,6 +2,8 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetSenatorQuery } from "./senatorSlice";
 import AppointmentScheduler from "./AppointmentScheduler";
+import "./appointment-scheduler.less";
+import "./SenatorDetails.less"
 
  export default function SenatorDetails(){
   const { id } = useParams();

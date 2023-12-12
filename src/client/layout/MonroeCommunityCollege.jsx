@@ -1,4 +1,5 @@
 import React from 'react';
+import "./monroecommunitycollege.less"
 
 const MonroeCommunityCollege = () => {
   return (

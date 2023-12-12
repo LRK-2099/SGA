@@ -1,82 +1,133 @@
-import React, { useState } from "react";
-
-const senators = [
-  { id: 1, name: "Mohamed Souhail", position: "Athletic Senator" },
-  { id: 2, name: "Ashley Wrobeh", position: "Health and Wellness Senator" },
-  { id: 3, name: "Alicia Crimmins", position: "Resident Halls Senator" },
-  { id: 4, name: "Lorieta Ellis", position: "Virtual Campus Senator" },
-  { id: 5, name: "Giomar Garcia Maldonado", position: "Clubs and Organization Senator" },
-  { id: 6, name: "Daniel Kalumbwe", position: "Clubs and Organizations Senator" },
-
-];
+import React, { useState, useEffect } from "react";
+import "./appointment-scheduler.less";
 
 const AppointmentScheduler = () => {
-  const [selectedSenator, setSelectedSenator] = useState(null);
-  const [selectedTimeSlot, setSelectedTimeSlot] = useState(null);
-
-  const handleSenatorChange = (senatorId) => {
-    setSelectedSenator(senatorId);
-  
-    setSelectedTimeSlot(null);
+  const generateTimeSlots = (startHour, endHour, increment) => {
+    const timeSlots = [];
+    for (let hour = startHour; hour <= endHour; hour++) {
+      for (let minute = 0; minute < 60; minute += increment) {
+        const formattedHour = hour.toString().padStart(2, "0");
+        const formattedMinute = minute.toString().padStart(2, "0");
+        const timeSlot = `${formattedHour}:${formattedMinute}`;
+        timeSlots.push(timeSlot);
+      }
+    }
+    return timeSlots;
   };
 
-  const handleTimeSlotChange = (timeSlot) => {
-    setSelectedTimeSlot(timeSlot);
+  const isHoliday = (date) => {
+    // Add your logic to check if the date is a holiday
+    // For simplicity, let's assume holidays are on specific dates
+    const holidays = [/* Add holiday dates here */];
+    const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
+      .toString()
+      .padStart(2, "0")}-${date.getDate().toString().padStart(2, "0")}`;
+
+    return holidays.includes(formattedDate);
+  };
+
+  const timeSlots = generateTimeSlots(8, 18, 15);
+
+  const [selectedDate, setSelectedDate] = useState("");
+  const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
+  const [email, setEmail] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [appointments, setAppointments] = useState([]);
+  const [notification, setNotification] = useState(null);
+
+  useEffect(() => {
+    // Reset notification after a delay
+    if (notification) {
+      const timeoutId = setTimeout(() => {
+        setNotification(null);
+      }, 3000);
+
+      return () => clearTimeout(timeoutId);
+    }
+  }, [notification]);
+
+  const handleDateChange = (e) => {
+    setSelectedDate(e.target.value);
+  };
+
+  const handleTimeSlotChange = (e) => {
+    setSelectedTimeSlot(e.target.value);
+  };
+
+  const handleEmailChange = (e) => {
+    setEmail(e.target.value);
+  };
+
+  const handlePhoneNumberChange = (e) => {
+    setPhoneNumber(e.target.value);
   };
 
   const scheduleAppointment = async () => {
-    // Implement logic to handle appointment scheduling
-    if (selectedSenator && selectedTimeSlot) {
-      try {
-        const response = await fetch('http://localhost:3001/send-email', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({ senator: selectedSenator, timeSlot: selectedTimeSlot }),
-        });
+    // Check for appointment conflicts
+    const conflict = appointments.some(
+      (appointment) =>
+        appointment.date === selectedDate && appointment.timeSlot === selectedTimeSlot
+    );
 
-        if (response.ok) {
-          console.log('Email sent successfully');
-        } else {
-          console.error('Failed to send email');
-        }
+    if (conflict) {
+      setNotification("Time slot is already booked. Please choose another time.");
+      return;
+    }
+
+    if (selectedDate && selectedTimeSlot && email && phoneNumber) {
+      try {
+        // Update appointments list with the new appointment
+        setAppointments([...appointments, { date: selectedDate, timeSlot: selectedTimeSlot }]);
+
+        // Display success notification
+        setNotification("Appointment scheduled successfully!");
+
+        // Reset form fields
+        setSelectedDate("");
+        setSelectedTimeSlot("");
+        setEmail("");
+        setPhoneNumber("");
       } catch (error) {
-        console.error('Error sending email:', error);
+        console.error('Error scheduling appointment:', error);
+        setNotification("Error scheduling appointment. Please try again.");
       }
     } else {
-      console.error("Please select a senator and a time slot before scheduling.");
+      setNotification("Please fill in all required fields before scheduling.");
     }
   };
 
   return (
-    <div>
+    <div className="appointment-scheduler">
       <h1>Appointment Scheduler</h1>
+      {notification && <div className="notification">{notification}</div>}
       <div>
-        <label>Select Senator:</label>
-        <select onChange={(e) => handleSenatorChange(e.target.value)}>
-          <option value="">Select Senator</option>
-          {senators.map((senator) => (
-            <option key={senator.id} value={senator.id}>
-              {senator.name} - {senator.position}
+        <label>Select Date:</label>
+        <input type="date" onChange={handleDateChange} value={selectedDate} />
+      </div>
+      <div>
+        <label>Select Time Slot:</label>
+        <select onChange={handleTimeSlotChange} value={selectedTimeSlot}>
+          <option value="">Select Time Slot</option>
+          {timeSlots.map((slot) => (
+            <option key={slot} value={slot}>
+              {slot}
             </option>
           ))}
         </select>
       </div>
-      {selectedSenator && (
-        <div>
-          <label>Select Time Slot:</label>
-  
-          <select onChange={(e) => handleTimeSlotChange(e.target.value)}>
-            <option value="">Select Time Slot</option>
-            <option value="10:00 AM">10:00 AM</option>
-            <option value="2:00 PM">2:00 PM</option>
-            <option value="4:00 PM">4:00 PM</option>
-     
-          </select>
-        </div>
+      {selectedDate && selectedTimeSlot && (
+        <>
+          <div>
+            <label>Email:</label>
+            <input type="email" value={email} onChange={handleEmailChange} />
+          </div>
+          <div>
+            <label>Phone Number:</label>
+            <input type="tel" value={phoneNumber} onChange={handlePhoneNumberChange} />
+          </div>
+          <button onClick={scheduleAppointment}>Schedule Appointment</button>
+        </>
       )}
-      <button onClick={scheduleAppointment}>Schedule Appointment</button>
     </div>
   );
 };

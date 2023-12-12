@@ -1,32 +1,39 @@
+import React from "react";
 import { useGetSenatorsQuery } from "./senatorSlice";
 
-import AppointmentScheduler from "./AppointmentScheduler";
 import { Link } from "react-router-dom";
+import "./Senators.less"
 
 export default function Senators() {
   const { data, isLoading } = useGetSenatorsQuery();
- 
 
   if (isLoading) {
     return <p>Loading senators...</p>;
   }
-  //added loading
 
   return (
     <>
-      <h1>Our Current staff </h1>
-
-      <ul>
-        <h2>Student Staff List</h2>
+      <h1>Our Current Staff</h1>
+      <div className="image-grid">
         {data?.map((senator) => (
-         <>
-          <h1>{senator.firstName} {senator.lastName}</h1>
-          <h2>{senator.major}</h2>
-         <Link to={`/senators/${senator.id}`}>More Info</Link>
-         </>
+          <Link to={`/senators/${senator.id}`} key={senator.id}>
+            <div className="image-container">
+              <img
+                src={senator.imageUrl}
+                alt={senator.lastName}
+                className="senator-image"
+                style= {{ height: "200px", width: "200px" }}
+              />
+              <div className="overlay">
+                <h2>{senator.firstName} {senator.lastName}</h2>
+                <h1>{senator.major}</h1>
+               
+              </div>
+            </div>
+          </Link>
         ))}
-      </ul>
-      <AppointmentScheduler senator={Senators} />
+      </div>
+
     </>
   );
 }

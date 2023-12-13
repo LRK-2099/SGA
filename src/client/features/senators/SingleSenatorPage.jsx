@@ -15,10 +15,10 @@ import "./SenatorDetails.less"
     <>
       <main>
         <img src={senator.imageUrl} alt="Senator" />
-        <h1>First Name: {senator.firstName}</h1>
-        <h1>Last Name: {senator.lastName}</h1>
-        <h2>Email: {senator.email}</h2>
-        <h3>Position {senator.major}</h3>
+
+        <h1>{senator.firstName} {senator.lastName}</h1>
+        <h2>{senator.email}</h2>
+        <h3>{senator.major}</h3>
         <AppointmentScheduler senator={senator} />
       </main>
     </>

@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux';
+import { addAppointment, removeAppointment, selectAppointments } from './appointmentSlice.js';
 import "./appointment-scheduler.less";
 
 const AppointmentScheduler = () => {

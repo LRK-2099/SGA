@@ -6,7 +6,7 @@ import "./monroecommunitycollege.less"
 const MainHome = () => {
   return (
     <div>
-      <h1>Welcome to My Website!</h1>
+      <h1>The MCC's SGA </h1>
       <MonroeCommunityCollege />
     </div>
   );

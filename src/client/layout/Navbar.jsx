@@ -17,9 +17,12 @@ export default function Navbar() {
 
   return (
     <nav className="top">
+      <img
+        src="https://www.monroecc.edu/fileadmin/SiteFiles/GeneralContent/depts/brand-toolkit/images/2015_logos/left_aligned_logos/MCC_logo_left_color_rgb.jpg"
+        alt="MCC Logo"
+      />
       <h1>Monroe Community College</h1>
       <menu>
-        
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
@@ -32,7 +35,7 @@ export default function Navbar() {
             <NavLink to="/login">Log In</NavLink>
           </li>
         )}
-         <li>
+        <li>
           <NavLink to="/Senators">Senators</NavLink>
         </li>
         <li>

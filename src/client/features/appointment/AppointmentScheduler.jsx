@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { addAppointment, removeAppointment, selectAppointments } from './appointmentSlice.js';
+
 import "./appointment-scheduler.less";
 
 const AppointmentScheduler = () => {
@@ -18,8 +17,7 @@ const AppointmentScheduler = () => {
   };
 
   const isHoliday = (date) => {
-    // Add your logic to check if the date is a holiday
-    // For simplicity, let's assume holidays are on specific dates
+
     const holidays = [/* Add holiday dates here */];
     const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
       .toString()

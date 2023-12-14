@@ -12,9 +12,10 @@ import AuthForm from "./features/auth/AuthForm.jsx";
 import Resolutions from "./features/resolutions/Resolutions.jsx";
 import Root from "./layout/Root.jsx";
 import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx";
+import Appointments from "./features/appointment/Appointments.jsx";
+import MainHome from "./layout/mainpage.jsx";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import MainHome from "./layout/mainpage.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,7 +24,7 @@ const router = createBrowserRouter([
       { path: "/", element: <MainHome /> },
       { path: "/resolutions", element: <Resolutions />},
       { path: "/senators", element: <Senators /> },
-      //make sure to add path to single info resloution id 
+      { path: "/appointments", element: <Appointments /> },
       { path: "/senators/:id", element: <SingleSenatorPage /> },
       { path: "/login", element: <AuthForm /> },
     ],

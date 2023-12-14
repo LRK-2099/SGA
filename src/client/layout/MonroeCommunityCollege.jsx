@@ -13,7 +13,7 @@ const MonroeCommunityCollege = () => {
         style={{}}
       />
       <p>
-        advocate for student needs, voice student opinions, and facilitate
+         The SGA advocates for student needs, voice student opinions, and facilitate
         communication between students, faculty, and the administration. Key
         functions of a college student government may include: Advocacy:
         Representing the student body's interests, concerns, and perspectives to

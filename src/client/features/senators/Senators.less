@@ -1,0 +1,49 @@
+.image-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
+    background-color: black;
+  }
+  
+  .image-container {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .senator-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+  }
+  
+  .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    color: rgb(255, 255, 255);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    
+  }
+  
+  .image-container:hover .overlay {
+    opacity: 1;
+  }
+  
+  .senators-page {
+    height: 100vh; 
+    background: linear-gradient(90deg, #000 25%, #ffd700 25%, #ffd700 100%);
+    color: #f3eded; 
+    padding: 20px;
+    
+  }
+  

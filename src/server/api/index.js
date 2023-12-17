@@ -25,6 +25,7 @@ router.use(async (req, res, next) => {
     next(new ServerError(401, "Invalid token."));
   }
 });
-
+router.use("/senators", require("./Senator"));
 router.use("/auth", require("./auth"));
-router.use("/tasks", require("./tasks"));
+router.use("/appointments", require("./Appointment"));
+router.use("/resolutions", require("./Resolutions"));

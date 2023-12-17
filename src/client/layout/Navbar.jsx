@@ -32,7 +32,6 @@ export default function Navbar() {
               <a onClick={handleLogout}>Log Out</a>
             </li>
             <li>
-              <NavLink to="/Appointments">Appointments</NavLink>
             </li>
           </>
         ) : (
@@ -44,7 +43,7 @@ export default function Navbar() {
           <NavLink to="/Senators">Senators</NavLink>
         </li>
         <li>
-          <NavLink to="/resolutions">Resolutions</NavLink>
+        <NavLink to="/appointments">Appointments</NavLink>
         </li>
       </menu>
     </nav>

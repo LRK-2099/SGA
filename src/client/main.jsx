@@ -1,9 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import "./index.less";
-
-
 
 import { Provider } from "react-redux";
 import store from "./store";
@@ -15,16 +14,15 @@ import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx";
 import Appointments from "./features/appointment/Appointments.jsx";
 import MainHome from "./layout/mainpage.jsx";
 
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     children: [
       { path: "/", element: <MainHome /> },
-      { path: "/resolutions", element: <Resolutions />},
+      { path: "/resolutions", element: <Resolutions /> },
       { path: "/senators", element: <Senators /> },
-      { path: "/appointments", element: <Appointments /> },
+      { path: "/appointments/", element: <Appointments /> },
       { path: "/senators/:id", element: <SingleSenatorPage /> },
       { path: "/login", element: <AuthForm /> },
     ],

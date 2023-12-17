@@ -1,35 +1,37 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useGetAppointmentsQuery } from './appointmentSlice';
+
 
 const Appointments = () => {
-  const [appointments, setAppointments] = useState([]);
+  const { data, isLoading, isError } = useGetAppointmentsQuery();
 
-  // Fetch appointments data from the server
-  const fetchAppointments = async () => {
-    try {
-      const response = await fetch('/api/appointments'); // Assuming this is your API endpoint
-      const data = await response.json();
-      setAppointments(data);
-    } catch (error) {
-      console.error('Error fetching appointments:', error);
-    }
-  };
-
-  // Fetch appointments on component mount
   useEffect(() => {
-    fetchAppointments();
-  }, []);
+    // This function will run whenever `data` changes
+  }, [data]);
+
+  if (isLoading) {
+    return <p>Loading appointments...</p>;
+  }
+
+  if (isError || !data) {
+    return <p>No Data provided</p>;
+  }
+
+  if (!data.length) {
+    return <p>Appointments not defined</p>;
+  }
 
   return (
-    <div>
+    <main>
       <h1>Appointments</h1>
       <ul>
-        {appointments.map((appointment, index) => (
-          <li key={index}>
+        {data.map((appointment) => (
+          <li key={appointment.id}>
             Date: {appointment.date}, Time Slot: {appointment.timeSlot}
           </li>
         ))}
       </ul>
-    </div>
+    </main>
   );
 };
 

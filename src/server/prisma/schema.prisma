@@ -33,3 +33,11 @@ model Resolutions {
   email   String
   resname String
 }
+
+model Appointment {
+  id          Int       @id @default(autoincrement())
+  date        DateTime
+  timeSlot    String
+  email       String
+  phoneNumber String
+}

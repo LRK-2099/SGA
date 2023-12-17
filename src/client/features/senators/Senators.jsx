@@ -15,7 +15,7 @@ export default function Senators() {
     <>
       <h1>Our Current Staff</h1>
       <div className="image-grid">
-        {data?.map((senator) => (
+        {data.map((senator) => (
           <Link to={`/senators/${senator.id}`} key={senator.id}>
             <div className="image-container">
               <img

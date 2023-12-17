@@ -1,8 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useCreateAppointmentMutation } from "./appointmentSlice";
+import { useDispatch } from "react-redux";
+
 
 import "./appointment-scheduler.less";
 
 const AppointmentScheduler = () => {
+  const [createAppointment, { isLoading }] = useCreateAppointmentMutation();
+  const dispatch = useDispatch();
+
+
   const generateTimeSlots = (startHour, endHour, increment) => {
     const timeSlots = [];
     for (let hour = startHour; hour <= endHour; hour++) {
@@ -17,7 +24,6 @@ const AppointmentScheduler = () => {
   };
 
   const isHoliday = (date) => {
-
     const holidays = [/* Add holiday dates here */];
     const formattedDate = `${date.getFullYear()}-${(date.getMonth() + 1)
       .toString()
@@ -32,11 +38,9 @@ const AppointmentScheduler = () => {
   const [selectedTimeSlot, setSelectedTimeSlot] = useState("");
   const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const [appointments, setAppointments] = useState([]);
   const [notification, setNotification] = useState(null);
 
   useEffect(() => {
-    // Reset notification after a delay
     if (notification) {
       const timeoutId = setTimeout(() => {
         setNotification(null);
@@ -63,8 +67,7 @@ const AppointmentScheduler = () => {
   };
 
   const scheduleAppointment = async () => {
-    // Check for appointment conflicts
-    const conflict = appointments.some(
+    const conflict = appointments && appointments.some(
       (appointment) =>
         appointment.date === selectedDate && appointment.timeSlot === selectedTimeSlot
     );
@@ -74,15 +77,16 @@ const AppointmentScheduler = () => {
       return;
     }
 
+
     if (selectedDate && selectedTimeSlot && email && phoneNumber) {
       try {
-        // Update appointments list with the new appointment
-        setAppointments([...appointments, { date: selectedDate, timeSlot: selectedTimeSlot }]);
+        const newAppointment = { date: selectedDate, timeSlot: selectedTimeSlot, email, phoneNumber };
+        const result = await createAppointment(newAppointment).unwrap();
 
-        // Display success notification
+        dispatch(addAppointment(newAppointment));
+
         setNotification("Appointment scheduled successfully!");
 
-        // Reset form fields
         setSelectedDate("");
         setSelectedTimeSlot("");
         setEmail("");

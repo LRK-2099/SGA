@@ -1,7 +1,8 @@
-const prisma = require("../prisma");
+const { PrismaClient } = require('@prisma/client');
+const prisma = new PrismaClient();
 
-const seed = async () => {
-  const data = [
+ async function seed () {
+  const senatorData = [
     {
       firstName: "Ava",
       lastName: "Allen",
@@ -102,22 +103,55 @@ const seed = async () => {
         major: "Election cordinator",
       },
     ];
+    const resolutionData = [
+      {
+        ResName: "Sample Resolution 1",
+        email: "resolution1@example.com",
+      },
+      {
+        ResName: "Sample Resolution 2",
+        email: "resolution2@example.com",
+      },
+      // Add more resolution data as needed
+    ];
+  
+  const appointmentData = [
+    {
+      date: "2023-12-01",
+      timeSlot: "10:00",
+      email: "john.doe@example.com",
+      phoneNumber: "123-456-7890",
+    },
+    {
+      date: "2023-12-02",
+      timeSlot: "14:30",
+      email: "jane.smith@example.com",
+      phoneNumber: "987-654-3210",
+    },
+  ];
 
-  await Promise.all(
-    data.map(async (item) => {
-      await prisma.senator.create({
-        data: item,
-      });
-    })
-  );
+
+  const senators = await prisma.senator.findMany();
+  console.log(senators);
+
+  for (const senator of senatorData) {
+    await prisma.Senator.create({ data: senator });
+  }
+    // Seed resolution data
+    prisma.Resolutions.createMany({
+      data: resolutionData,
+    }),
+
+    // Seed appointment data
+   prisma.Appointment.createMany({
+      data: appointmentData,
+    });
 };
 
 seed()
-  .then(async () => await prisma.$disconnect())
+  .then(async () => {await prisma.$disconnect()})
   .catch(async (err) => {
     console.error(err);
     await prisma.$disconnect();
     process.exit(1);
   });
-
-module.exports = seed;

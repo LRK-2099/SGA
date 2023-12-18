@@ -3,7 +3,7 @@ import { useCreateAppointmentMutation} from "./appointmentSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 
-import "./appointment-scheduler.less";
+import "./Appointment-scheduler.less";
 
 const AppointmentScheduler = () => {
   const appointments = useSelector(state => state.appointments);
@@ -103,38 +103,38 @@ const AppointmentScheduler = () => {
   };
 
   return (
-    <div className="appointment-scheduler">
-      <h1>Appointment Scheduler</h1>
-      {notification && <div className="notification">{notification}</div>}
-      <div>
-        <label>Select Date:</label>
-        <input type="date" onChange={handleDateChange} value={selectedDate} />
-      </div>
-      <div>
-        <label>Select Time Slot:</label>
-        <select onChange={handleTimeSlotChange} value={selectedTimeSlot}>
-          <option value="">Select Time Slot</option>
-          {timeSlots.map((slot) => (
-            <option key={slot} value={slot}>
-              {slot}
-            </option>
-          ))}
-        </select>
-      </div>
-      {selectedDate && selectedTimeSlot && (
-        <>
-          <div>
-            <label>Email:</label>
-            <input type="email" value={email} onChange={handleEmailChange} />
-          </div>
-          <div>
-            <label>Phone Number:</label>
-            <input type="tel" value={phoneNumber} onChange={handlePhoneNumberChange} />
-          </div>
-          <button onClick={scheduleAppointment}>Schedule Appointment</button>
-        </>
-      )}
+    <div className="appointment-scheduler" style={{ backgroundColor: '#F0F2F5', padding: '20px', borderRadius: '8px' }}>
+    <h1 style={{ color: '#4B4E6D', fontSize: '24px' }}>Let's schedule an Appointment!</h1>
+    {notification && <div className="notification">{notification}</div>}
+    <div>
+      <label>Select Date:</label>
+      <input type="date" onChange={handleDateChange} value={selectedDate} style={{ margin: '10px 0', padding: '10px', borderRadius: '8px' }} />
     </div>
+    <div>
+      <label>Select Time Slot:</label>
+      <select onChange={handleTimeSlotChange} value={selectedTimeSlot} style={{ margin: '10px 0', padding: '10px', borderRadius: '8px' }}>
+        <option value="">Select Time Slot</option>
+        {timeSlots.map((slot) => (
+          <option key={slot} value={slot}>
+            {slot}
+          </option>
+        ))}
+      </select>
+    </div>
+    {selectedDate && selectedTimeSlot && (
+      <>
+        <div>
+          <label>Email:</label>
+          <input type="email" value={email} onChange={handleEmailChange} style={{ margin: '10px 0', padding: '10px', borderRadius: '8px' }} />
+        </div>
+        <div>
+          <label>Phone Number:</label>
+          <input type="tel" value={phoneNumber} onChange={handlePhoneNumberChange} style={{ margin: '10px 0', padding: '10px', borderRadius: '8px' }} />
+        </div>
+        <button onClick={scheduleAppointment} style={{ backgroundColor: '#1877F2', color: 'white', padding: '10px 20px', borderRadius: '8px', border: 'none', cursor: 'pointer' }}>Schedule Appointment</button>
+      </>
+    )}
+  </div>
   );
 };
 

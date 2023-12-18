@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { useCreateAppointmentMutation } from "./appointmentSlice";
-import { useDispatch } from "react-redux";
+import { useCreateAppointmentMutation, addAppointment } from "./appointmentSlice";
+import { useDispatch, useSelector } from "react-redux";
 
 
 import "./appointment-scheduler.less";
 
 const AppointmentScheduler = () => {
+  const appointments = useSelector(state => state.appointments);
+  const [addAppointment] = useCreateAppointmentMutation();
   const [createAppointment, { isLoading }] = useCreateAppointmentMutation();
   const dispatch = useDispatch();
 

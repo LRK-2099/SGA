@@ -13,6 +13,8 @@ const appointmentApi = api.injectEndpoints({
       providesTags: ["Appointment"],
     }),
 
+
+    //this is a componenet used to scheduale appointments 
     createAppointment: builder.mutation({
       query: (appointment) => ({
         url: "/appointments",

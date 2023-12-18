@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useGetSenatorQuery } from "./senatorSlice";
 import AppointmentScheduler from "../appointment/AppointmentScheduler";
-
+// import CreateAppointment from "../appointment/createappointment";
 import "./SenatorDetails.less"
 
  export default function SenatorDetails(){
@@ -19,7 +19,8 @@ import "./SenatorDetails.less"
         <h1>{senator.firstName} {senator.lastName}</h1>
         <h2>{senator.email}</h2>
         <h3>{senator.major}</h3>
-        <AppointmentScheduler senator={senator} />
+       <div className="AppointmentScheduler"></div><AppointmentScheduler senator={senator} />
+        {/* <CreateAppointment senator={senator} /> */}
       </main>
     </>
   );

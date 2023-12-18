@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useGetAppointmentsQuery } from './appointmentSlice';
-
+import './Appointments.less';
 
 const Appointments = () => {
   const { data, isLoading, isError } = useGetAppointmentsQuery();
@@ -27,7 +27,9 @@ const Appointments = () => {
       <ul>
         {data.map((appointment) => (
           <li key={appointment.id}>
-            Date: {appointment.date}, Time Slot: {appointment.timeSlot}
+            Date: {appointment.date}, 
+            Time Slot: {appointment.timeSlot}
+            Email: {appointment.email}
           </li>
         ))}
       </ul>

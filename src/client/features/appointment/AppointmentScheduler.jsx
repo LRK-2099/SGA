@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useCreateAppointmentMutation, addAppointment } from "./appointmentSlice";
+import { useCreateAppointmentMutation} from "./appointmentSlice";
 import { useDispatch, useSelector } from "react-redux";
 
 

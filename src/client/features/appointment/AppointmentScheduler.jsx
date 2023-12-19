@@ -1,13 +1,15 @@
 import React, { useState, useEffect } from "react";
 import { useCreateAppointmentMutation} from "./appointmentSlice";
 import { useDispatch, useSelector } from "react-redux";
-
+//import paths 
 
 import "./Appointment-scheduler.less";
 
 const AppointmentScheduler = () => {
   const appointments = useSelector(state => state.appointments);
+  //the function that allows me to get the data from the server
   const [addAppointment] = useCreateAppointmentMutation();
+  //this is used to add the appointment  Pretty self explanitory
   const [createAppointment, { isLoading }] = useCreateAppointmentMutation();
   const dispatch = useDispatch();
 

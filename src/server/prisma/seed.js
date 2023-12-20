@@ -136,15 +136,15 @@ const prisma = new PrismaClient();
   console.log(senators);
 
   for (const senator of senatorData) {
-    await prisma.Senator.create({ data: senator });
+    await prisma.Senator.upsert({ data: senator });
   }
     // Seed resolution data
-    prisma.Resolutions.createMany({
+    prisma.Resolutions.upsertMany({
       data: resolutionData,
     }),
 
     // Seed appointment data
-   prisma.Appointment.createMany({
+   prisma.Appointment.upsertMany({
       data: appointmentData,
     });
 };

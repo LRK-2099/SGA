@@ -5,16 +5,17 @@ import { useSelector } from 'react-redux';
 import { selectIsAuthenticated } from '../auth/authSlice'; // adjust the path as needed
 import { useDeleteAppointmentMutation } from './appointmentSlice';
 import AppointmentScheduler from './AppointmentScheduler';
-
+import { useNavigate } from 'react-router-dom'; // Changed this line
 
 const Appointments = () => {
   const { data, isLoading, isError } = useGetAppointmentsQuery();
   const [deleteAppointment] = useDeleteAppointmentMutation();
   const isAuthenticated = useSelector(selectIsAuthenticated);
+  const navigate = useNavigate(); // Added this line
+
 
   useEffect(() => {
-    // No need to keep a separate state for isLoggedIn, y
-    //you can directly use isAuthenticated
+    // No need to keep a separate state for isLoggedIn, you can directly use isAuthenticated
   }, [isAuthenticated]);
 
   const handleDelete = async (id) => {
@@ -25,6 +26,12 @@ const Appointments = () => {
       console.error('Failed to delete the appointment: ', error);
     }
   };
+
+  // If user is not authenticated, redirect to login page
+  if (!isAuthenticated) {
+    navigate('/login'); // Changed this line
+    return;
+  }
 
   if (isLoading) {
     return <p>Loading appointments...</p>;

@@ -27,11 +27,12 @@ const Appointments = () => {
     }
   };
 
-  // If user is not authenticated, redirect to login page
-  if (!isAuthenticated) {
-    navigate('/login'); // Changed this line
-    return;
-  }
+  useEffect(() => {
+    // If user is not authenticated, redirect to login page
+    if (!isAuthenticated) {
+      navigate('/login');
+    }
+  }, [isAuthenticated, navigate])
 
   if (isLoading) {
     return <p>Loading appointments...</p>;

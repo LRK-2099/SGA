@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import api from "../../store/api";
 
+
 /** Authentication endpoints */
+
 const authApi = api.injectEndpoints({
   endpoints: (builder) => ({
     register: builder.mutation({
@@ -57,5 +59,6 @@ const authSlice = createSlice({
 export const { logout } = authSlice.actions;
 
 export const selectToken = (state) => state.auth.token;
+export const selectIsAuthenticated = (state) => !!state.auth.token;
 
 export default authSlice.reducer;

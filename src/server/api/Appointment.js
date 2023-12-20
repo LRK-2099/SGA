@@ -44,10 +44,10 @@ router.post("/", async (req, res, next) => {
     if (!phoneNumber) {
       throw new ServerError(400, "Invalid phone number");
     }
-
+    const dateObject = new Date(date);
     const appointment = await prisma.appointment.create({
       data: {
-        date,
+        date: dateObject,
         timeSlot,
         email,
         phoneNumber,

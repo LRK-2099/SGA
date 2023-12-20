@@ -1,41 +1,42 @@
 const { PrismaClient } = require('@prisma/client');
 const prisma = new PrismaClient();
 
+
  async function seed () {
   const senatorData = [
     {
       firstName: "Ava",
       lastName: "Allen",
       email: "avaallen@gmail.com",
-      imageUrl: "https://example.com/ava.jpg",
+      imageUrl: "https://images.generated.photos/aEOqAmPTlCAeSgPwrLqqKvYemlvN0MhPVTZL30UNB2c/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/MjIwMzQ5LmpwZw.jpg",
       major: "Chief of staff",
     },
     {
       firstName: "Mohamed",
       lastName: "Souhail",
       email: "mohamedsouhail@gmail.com",
-      imageUrl: "https://media.licdn.com/dms/image/D4E03AQFB496c9j-gBA/profile-displayphoto-shrink_200_200/0/1673791272604?e=2147483647&v=beta&t=f4Q21s0WYlVxfjenNnYg4fod3U4ojfvaAyO9hZuQWB8",
+      imageUrl: "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-8.jpg",
       major: "Athletic Senator",
     },
     {
       firstName: "Ashley",
       lastName: "Wrobeh",
       email: "ashleywrobeh@gmail.com",
-      imageUrl: "https://media.licdn.com/dms/image/D5603AQEzkXF-Ln34hw/profile-displayphoto-shrink_800_800/0/1666697863405?e=2147483647&v=beta&t=nKdfZ6EnkesyVmeZVmuRJs97UWZ4LvD0ume86H-ReHk",
+      imageUrl: "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-7.jpg",
       major: "Health and Wellness Senator",
     },
     {
       firstName: "Alicia",
       lastName: "Crimmins",
       email: "aliciacrimmins@gmail.com",
-      imageUrl: "https://media.licdn.com/dms/image/D4E03AQFVjJ4Yhz9dlw/profile-displayphoto-shrink_800_800/0/1685404599754?e=2147483647&v=beta&t=6rX-HxzMbyflVHrNqMRUU6wnmJdP7QWilxNTkdbyFxo",
+      imageUrl: "https://mymodernmet.com/wp/wp-content/uploads/2019/09/100k-ai-faces-5.jpg",
       major: "Resident Halls Senator",
     },
     {
       firstName: "Lorieta",
       lastName: "Ellis",
       email: "lorietaellis@gmail.com",
-      imageUrl: "https://media.licdn.com/dms/image/C5603AQHvtpH2XLlUWg/profile-displayphoto-shrink_200_200/0/1516516484612?e=2147483647&v=beta&t=A0cbvZqzZyrT2eTkvXb00pvHvFZvpyaNGSXcHxL2jG0",
+      imageUrl: "https://faces3.b-cdn.net/Iceland.png",
       major: "Virtual Campus senator",
     },
     {
@@ -49,7 +50,7 @@ const prisma = new PrismaClient();
       firstName: "Daniel",
       lastName: "Kalumbwe",
       email: "danielkalumbwe@gmail.com",
-      imageUrl: "https://media.licdn.com/dms/image/D5603AQH0aDXsDGVReA/profile-displayphoto-shrink_200_200/0/1692844849368?e=1707955200&v=beta&t=wjG85gsBqZD26pmqoDnAnYHVhV_sBhNBJ1dvEGRYZeg",
+      imageUrl: "https://static.boredpanda.com/blog/wp-content/uploads/2018/12/ai-image-generation-fake-faces-people-nvidia-5c18b207b7231__700.jpg",
       major: "Clubs and Orginizatrions senator ",
     },
 
@@ -71,35 +72,35 @@ const prisma = new PrismaClient();
         firstName: "Mandie",
         lastName: "McGinnis",
         email: "mandiemcginnis@example.com",
-        imageUrl: "https://sa1s3optim.patientpop.com/200x200/filters:format(webp)/assets/images/provider/photos/2179504.jpg",
+        imageUrl: "https://1.img-dpreview.com/files/p/TS560x560~forums/63132016/2a1e59e12f4543bea10f2385259c81cf",
         major: "Vice President of Downtown",
       },
       {
         firstName: "Zeynep",
         lastName: "Güney",
         email: "zeynepguney@example.com",
-        imageUrl: "https://media.licdn.com/dms/image/D4D03AQHru4ij-wvJtw/profile-displayphoto-shrink_200_200/0/1699364219213?e=2147483647&v=beta&t=a1uFVo7KgEZUbmjfB4GixHQP1uDqSQLjNL1L8jIkkOU",
+        imageUrl: "https://static01.nyt.com/newsgraphics/2020/11/12/fake-people/4b806cf591a8a76adfc88d19e90c8c634345bf3d/fallbacks/mobile-01.jpg",
         major: "Treasurer"
       },
       {
         firstName: "Ivy",
         lastName: "Zin",
         email: "ivy@example.com",
-        imageUrl: "https://miro.medium.com/v2/resize:fit:1200/1*pHb0M9z_UMhO22HlaOl2zw.jpeg",
+        imageUrl: "",
         major: "Secertary of governance"
       },
       {
         firstName: "Paula",
         lastName: "Barlow",
         email: "paulabarlow@example.com",
-        imageUrl: "https://media.licdn.com/dms/image/D4E03AQEmuXflGImItw/profile-displayphoto-shrink_800_800/0/1673817470794?e=2147483647&v=beta&t=oERuOsRGsX1NdIbrkBbSWGW35ow8gx2ATcx667At4iI",
+        imageUrl: "https://images.generated.photos/m6LxtP61qAzW6x7XNMzpRlfSApgBnW8xbkyt5t7Zqtc/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/OTA2NzE3LmpwZw.jpg",
         major: "Historian"
       },
       {
         firstName: "Naz",
         lastName: "Barmak",
         email: "nazbarmak@example.com",
-        imageUrl: "https://m.media-amazon.com/images/M/MV5BYmE0NGI3NWUtNGNlMC00ODAzLWI4MzQtNmE0MTVmNzk3MzFiXkEyXkFqcGdeQXVyMTE0MzQwMjgz._V1_QL75_UX500_CR0,26,500,281_.jpg",
+        imageUrl: "https://images.generated.photos/LjDfLDCaAFjmdMIo3eIXJYSVL-RydEJLgqXc35wHbLw/rs:fit:256:256/czM6Ly9pY29uczgu/Z3Bob3Rvcy1wcm9k/LnBob3Rvcy92M18w/NDY0NDI3LmpwZw.jpg",
         major: "Election cordinator",
       },
     ];
@@ -135,15 +136,15 @@ const prisma = new PrismaClient();
   console.log(senators);
 
   for (const senator of senatorData) {
-    await prisma.Senator.create({ data: senator });
+    await prisma.Senator.upsert({ data: senator });
   }
     // Seed resolution data
-    prisma.Resolutions.createMany({
+    prisma.Resolutions.upsertMany({
       data: resolutionData,
     }),
 
     // Seed appointment data
-   prisma.Appointment.createMany({
+   prisma.Appointment.upsertMany({
       data: appointmentData,
     });
 };

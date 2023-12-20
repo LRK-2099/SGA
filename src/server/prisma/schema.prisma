@@ -11,33 +11,39 @@ datasource db {
 }
 
 model Senator {
-  id       Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   firstName String
   lastName  String
   email     String
   imageUrl  String
-  major String
+  major     String
 }
 
 model Executives {
-id       Int      @id @default(autoincrement())
+  id        Int    @id @default(autoincrement())
   firstName String
   lastName  String
   email     String
   imageUrl  String
-  major String
+  major     String
 }
 
 model Resolutions {
-  id      Int     @id @default(autoincrement())
+  id      Int    @id @default(autoincrement())
   email   String
   resname String
 }
 
 model Appointment {
-  id          Int       @id @default(autoincrement())
+  id          Int      @id @default(autoincrement())
   date        DateTime
   timeSlot    String
   email       String
   phoneNumber String
+}
+
+model User {
+  id       Int    @id @default(autoincrement())
+  username String @unique
+  password String
 }

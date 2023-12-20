@@ -23,9 +23,15 @@ CREATE TABLE "Resoultions" (
 );
 
 CREATE TABLE "Appointment" (
-"id" INTEGER
-"Date" TEXT NOT NULL
-"email" TEXT NOT NULL
-"phonenumber" TEXT NOT NULL
+"id" INTEGER,
+"Date" TEXT NOT NULL,
+"email" TEXT NOT NULL,
+"phonenumber" TEXT NOT NULL,
 "timeSlot" TEXT NOT NULL
+);
+
+CREATE TABLE "User" (
+    "id" INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL
 );

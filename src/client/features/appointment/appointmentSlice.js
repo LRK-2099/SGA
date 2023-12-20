@@ -1,4 +1,5 @@
 import api from "../../store/api";
+
 const appointmentApi = api.injectEndpoints({
   endpoints: (builder) => ({
     // api endpoints

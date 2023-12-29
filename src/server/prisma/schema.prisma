@@ -7,8 +7,10 @@ generator client {
 
 datasource db {
   provider = "sqlite"
-  url      = env("file:./dev.db")
+  url      = env("DATABASE_URL")
 }
+
+// this is the right one 
 
 model Senator {
   id        Int    @id @default(autoincrement())

@@ -55,6 +55,8 @@ const Appointments = () => {
           <div style={{ backgroundColor: '#E4E6EB', padding: '10px', borderRadius: '8px', margin: '10px 0' }}>Date: {appointment.date}</div>
           <div style={{ backgroundColor: '#E4E6EB', padding: '10px', borderRadius: '8px', margin: '10px 0' }}>Time Slot: {appointment.timeSlot}</div>
           <div style={{ backgroundColor: '#E4E6EB', padding: '10px', borderRadius: '8px', margin: '10px 0' }}>Email: {appointment.email}</div>
+          <div style={{ backgroundColor: '#E4E6EB', padding: '10px', borderRadius: '8px', margin: '10px 0' }}>Phone: {appointment.phoneNumber}</div>
+          <h2>cant make it that day ? 😢</h2>
           <button 
             onClick={() => handleDelete(appointment.id)} 
             style={{
@@ -73,7 +75,7 @@ const Appointments = () => {
           >
             X
           </button>
-          <h2>cant make it that day </h2>
+          <h2>I know ! 😱</h2>
           <AppointmentScheduler />
         </li>
       ))}

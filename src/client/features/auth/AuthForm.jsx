@@ -46,7 +46,7 @@ export default function AuthForm() {
       <h1>{authAction}</h1>
       <form onSubmit={attemptAuth}>
         <label>
-          Username
+        MCC Email
           <input
             type="text"
             value={username}

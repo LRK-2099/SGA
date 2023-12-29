@@ -86,7 +86,7 @@ const prisma = new PrismaClient();
         firstName: "Ivy",
         lastName: "Zin",
         email: "ivy@example.com",
-        imageUrl: "",
+        imageUrl: "https://api.deepai.org/job-view-file/47ae8a39-0ab9-4834-a631-778f6e2a6b0e/outputs/output.jpg",
         major: "Secertary of governance"
       },
       {
@@ -133,26 +133,25 @@ const prisma = new PrismaClient();
 
 
   const senators = await prisma.senator.findMany();
-  console.log(senators);
+   console.log(senators);
+   for (const senator of senatorData) {
+     await prisma.Senator.create({ data: senator });
+   }
+     // Seed resolution data
+     prisma.Resolutions.createMany({
+       data: resolutionData,
+     }),
+     // Seed appointment data
+    prisma.Appointment.createMany({
+       data: appointmentData,
+     });
+  };
+  seed()
+   .then(async () => {await prisma.$disconnect()})
+   .catch(async (err) => {
+     console.error(err);
+     await prisma.$disconnect();
+     process.exit(1);
+   });
 
-  for (const senator of senatorData) {
-    await prisma.Senator.upsert({ data: senator });
-  }
-    // Seed resolution data
-    prisma.Resolutions.upsertMany({
-      data: resolutionData,
-    }),
 
-    // Seed appointment data
-   prisma.Appointment.upsertMany({
-      data: appointmentData,
-    });
-};
-
-seed()
-  .then(async () => {await prisma.$disconnect()})
-  .catch(async (err) => {
-    console.error(err);
-    await prisma.$disconnect();
-    process.exit(1);
-  });

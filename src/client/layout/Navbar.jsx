@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, useNavigate } from "react-router-dom";
 import { logout, selectToken } from "../features/auth/authSlice";
-
+import { useState } from "react";
 import "./Navbar.less";
 
 export default function Navbar() {
@@ -9,6 +9,9 @@ export default function Navbar() {
   const navigate = useNavigate();
 
   const token = useSelector(selectToken);
+
+  const [isStaffOpen, setIsStaffOpen] = useState(false);
+  const [isStudentsOpen, setIsStudentsOpen] = useState(false);
 
   const handleLogout = async () => {
     await dispatch(logout());
@@ -26,24 +29,30 @@ export default function Navbar() {
         <li>
           <NavLink to="/">Home</NavLink>
         </li>
-        {token ? (
-          <>
-            <li>
-              <a onClick={handleLogout}>Log Out</a>
-            </li>
-            <li>
-            </li>
-          </>
-        ) : (
-          <li>
-            <NavLink to="/login">Log In</NavLink>
-          </li>
-        )}
-        <li>
-          <NavLink to="/Senators">Senators</NavLink>
+        <li onMouseEnter={() => setIsStaffOpen(true)} onMouseLeave={() => setIsStaffOpen(false)}>
+          Staff
+          {isStaffOpen && (
+            <ul>
+              {token ? (
+                <>
+                  <li><a onClick={handleLogout}>Log Out</a></li>
+                  <li><NavLink to="/appointments">Appointments</NavLink></li>
+                  <li><NavLink to="/resolutions">Resolutions</NavLink></li>
+                </>
+              ) : (
+                <li><NavLink to="/login">Log In</NavLink></li>
+              )}
+            </ul>
+          )}
         </li>
-        <li>
-        <NavLink to="/appointments">Appointments</NavLink>
+        <li onMouseEnter={() => setIsStudentsOpen(true)} onMouseLeave={() => setIsStudentsOpen(false)}>
+          Students
+          {isStudentsOpen && (
+            <ul>
+              <li><NavLink to="/senators">Senators</NavLink></li>
+              <li><NavLink to="/resolutions">Resolutions</NavLink></li>
+            </ul>
+          )}
         </li>
       </menu>
     </nav>

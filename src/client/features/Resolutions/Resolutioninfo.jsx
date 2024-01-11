@@ -11,7 +11,7 @@ export default function ResolutionDetails() {
   ) : (
     <>
       <main>
-        <h1>Resolution Name: {resolution.ResName}</h1>
+        <h1>Resolution Name: {resolution.resname}</h1>
         <h1>Submitted By: {resolution.email}</h1>
       </main>
     </>

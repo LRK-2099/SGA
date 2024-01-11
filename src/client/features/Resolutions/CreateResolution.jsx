@@ -3,28 +3,29 @@ import { useCreateResolutionMutation } from "./resolutionSlice";
 
 // Form for creating a new resolution
 export default function CreateResolution() {
-  const [ResName, setResName] = useState("");
+  const [resname, setResName] = useState("");
   const [email, setEmail] = useState("");
   const [createResolution] = useCreateResolutionMutation();
 
   const create = (event) => {
     event.preventDefault();
-    createResolution({ ResName, email,});
+    createResolution({ resname, email,});
   };
 
   return (
     <form onSubmit={create}>
       <label>
-        Create a Resolution Funding request:
+       Funding request:
         <input
           type="text"
-          value={ResName}
+          value={resname}
           onChange={(e) => setResName(e.target.value)}
           required
         />
       </label>
+
       <label>
-        Email associated with the Orginaztion:
+        Email:
         <input
           type="email"
           value={email}

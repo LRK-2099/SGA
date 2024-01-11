@@ -7,7 +7,7 @@ const prisma = require("../prisma");
 
 router.get("/", async (req, res, next) => {
   try {
-    const resolutionData = await prisma.resolution.findMany();
+    const resolutionData = await prisma.resolutions.findMany();
     console.log(resolutionData);
     res.json(resolutionData);
   } catch (error) {
@@ -18,16 +18,11 @@ router.get("/", async (req, res, next) => {
 router.get("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
-    const resolutionById = await prisma.resolution.findUnique({
+    const resolution = await prisma.resolutions.findUnique({
       where: { id },
     });
-    if (!resolutionById) {
-      return next({
-        status: 404,
-        message: `No resolution found with id ${id}`,
-      });
-    }
-    res.json(resolutionById);
+    res.json(resolution);
+    console.log("find resolution ===", resolutions);
   } catch (error) {
     next(error);
   }
@@ -35,15 +30,15 @@ router.get("/:id", async (req, res, next) => {
 
 router.post("/", async (req, res, next) => {
   try {
-    const { ResName, email } = req.body;
+    const { resname, email } = req.body;
 
-    if (!ResName || !email) {
+    if (!resname || !email) {
       throw new ServerError(400, "Missing required fields");
     }
 
-    const resolution = await prisma.resolution.create({
+    const resolution = await prisma.resolutions.create({
       data: {
-        ResName, 
+        resname, 
         email,
       },
     });
@@ -58,7 +53,7 @@ router.delete("/:id", async (req, res, next) => {
   try {
     const id = +req.params.id;
 
-    await prisma.resolution.delete({ where: { id } });
+    await prisma.resolutions.delete({ where: { id } });
     res.sendStatus(204);
   } catch (err) {
     next(err);
@@ -67,14 +62,14 @@ router.delete("/:id", async (req, res, next) => {
 
 router.put("/:id", async (req, res, next) => {
   try {
-    const id = +req.params.id;
-    const { ResName, email } = req.body;
+    const id = + req.params.id;
+    const { resname, email } = req.body;
 
-    const resolution = await prisma.resolutions.findUnique({ where: { id } });
-    const updatedResolution = await prisma.resolution.update({
+    const resolution = await prisma.resolutions.findUnique({ where: { id } }); // Corrected here
+    const updatedResolution = await prisma.resolutions.update({
       where: { id },
       data: {
-        ResName,
+        resname,
         email,
       },
     });

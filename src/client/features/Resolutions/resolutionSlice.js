@@ -8,7 +8,8 @@ const resolutionApi = api.injectEndpoints({
       providesTags: ["Resolutions"],
     }),
 
-    getResolution: builder.query({
+    getResolution: builder.query ({
+      //this end point is used to fetch a specific reslution by the id 
       query: (id) => `/resolutions/${id}`,
       providesTags: ["Resolution"],
     }),

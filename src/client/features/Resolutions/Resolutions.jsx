@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import React from "react";
 import { useGetResolutionsQuery, useDeleteResolutionMutation } from "./resolutionSlice";
-
+import './Resolutions.less';
  import CreateResolution from "./CreateResolution";
 // creating a resoultion is not a thing yet so we will comment it out
 

@@ -13,6 +13,7 @@ import Root from "./layout/Root.jsx";
 import SingleSenatorPage from "./features/senators/SingleSenatorPage.jsx";
 import Appointments from "./features/appointment/Appointments.jsx";
 import MainHome from "./layout/mainpage.jsx";
+import CreateResolution from "./features/resolutions/CreateResolution.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,7 @@ const router = createBrowserRouter([
       { path: "/resolutions", element: <Resolutions /> },
       { path: "/senators", element: <Senators /> },
       { path: "/appointments/", element: <Appointments /> },
+      { path: "/resolutions/create", element: <CreateResolution /> }, // Added missing comma here
       { path: "/senators/:id", element: <SingleSenatorPage /> },
       { path: "/login", element: <AuthForm /> },
     ],

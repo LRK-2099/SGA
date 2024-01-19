@@ -31,6 +31,7 @@ export default function Navbar() {
         </li>
         <li onMouseEnter={() => setIsStaffOpen(true)} onMouseLeave={() => setIsStaffOpen(false)}>
           Staff
+      
           {isStaffOpen && (
             <ul>
               {token ? (
@@ -39,7 +40,9 @@ export default function Navbar() {
                   <li><NavLink to="/appointments">Appointments</NavLink></li>
                   <li><NavLink to="/resolutions">Resolutions</NavLink></li>
                 </>
-              ) : (
+              ) 
+              //above is the nav bar for the staff and below is the nav bar for the students
+              : (
                 <li><NavLink to="/login">Log In</NavLink></li>
               )}
             </ul>
@@ -50,7 +53,7 @@ export default function Navbar() {
           {isStudentsOpen && (
             <ul>
               <li><NavLink to="/senators">Senators</NavLink></li>
-              <li><NavLink to="/resolutions">Resolutions</NavLink></li>
+              <li><NavLink to="/resolutions/create">Create Resolution</NavLink></li>
             </ul>
           )}
         </li>

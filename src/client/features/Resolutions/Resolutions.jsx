@@ -2,7 +2,7 @@
 import React from "react";
 import { useGetResolutionsQuery, useDeleteResolutionMutation } from "./resolutionSlice";
 import './Resolutions.less';
- import CreateResolution from "./CreateResolution";
+
 // creating a resoultion is not a thing yet so we will comment it out
 
 export default function Resolutions() {
@@ -35,7 +35,7 @@ export default function Resolutions() {
   return (
     <>
       <h1>Current Resolutions</h1>
-      <CreateResolution />
+   
       <ul>
         <h2>Resolution List</h2>
         {data.map((resolutions) => (

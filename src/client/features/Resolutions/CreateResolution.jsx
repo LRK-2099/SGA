@@ -6,12 +6,18 @@ export default function CreateResolution() {
   const [resname, setResName] = useState("");
   const [email, setEmail] = useState("");
   const [createResolution] = useCreateResolutionMutation();
+  const [notification, setNotification] = useState("");
 
-  const create = (event) => {
+  const create = async (event) => {
     event.preventDefault();
-    createResolution({ resname, email,});
+    try {
+      await createResolution({ resname, email });
+      setNotification("Funding request has been made successfully!");
+    } catch (error) {
+      setNotification("An error occurred while making the funding request.");
+    }
   };
-
+ 
   return (
     <form onSubmit={create}>
       <label>
@@ -43,8 +49,8 @@ export default function CreateResolution() {
           required
         />
       </label>
-
       <button>send funding Resolution</button>
+      {notification && <div className="notification">{notification}</div>}
     </form>
   );
 }
